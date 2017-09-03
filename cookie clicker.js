@@ -10,6 +10,8 @@
     document.getElementsByTagName("head")[0].appendChild(script);
 })();
 
+Game.LoadMod('http://aktanusa.github.io/CookieMonster/CookieMonster.js');
+
 var autoClicker;  
 var autoBuilder;
 
