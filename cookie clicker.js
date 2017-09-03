@@ -15,12 +15,13 @@ Game.LoadMod('http://aktanusa.github.io/CookieMonster/CookieMonster.js');
 var autoClicker;  
 var autoBuilder;
 
-function initBot(amount, shouldLoadUpgrade, shouldLoadBuilding) {
+function initBot(amount, shouldBuyUpgrade, shouldBuyBuilding) {
 	clearBot();
 	autoClicker = setInterval(function() { Game.ClickCookie(); }, amount);
-	autoBuilder = setInterval(function() { 
-		if (shouldLoadUpgrade) buyUpgrade();
-		if (shouldLoadBuilding) buyBuilding();
+	autoBuilder = setInterval(function() {
+		var hasBuyUpgrade = false;
+		if (shouldBuyUpgrade) hasBuyUpgrade = buyUpgrade();
+		if (shouldBuyBuilding && !hasBuyUpgrade) buyBuilding();
 		clickGooldenCookie();
 	}, 1000);
 }
@@ -31,11 +32,19 @@ function clearBot() {
 }
 
 function buyUpgrade() {
-	$('.CMBackBlue').click()
+	var upgrade = $('.CMBackBlue');
+	if (upgrade.length > 0) {
+		upgrade.click();
+		return true;
+	}
+	return false;
 }
 
 function buyBuilding() {
-	$("span[style*='color: rgb(0, 255, 0)']").click();
+	var building = $("span[style*='color: rgb(0, 255, 0)']");
+	if (building.length > 0) {
+		building.click();	
+	}
 }
 
 function clickGooldenCookie() {
