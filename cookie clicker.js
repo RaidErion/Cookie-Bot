@@ -13,10 +13,14 @@
 var autoClicker;  
 var autoBuilder;
 
-function initBot(amount) {
+function initBot(amount, shouldLoadUpgrade, shouldLoadBuilding) {
 	clearBot();
 	autoClicker = setInterval(function() { Game.ClickCookie(); }, amount);
-	autoBuilder = setInterval(function() { buyBuilding(); }, 1000);
+	autoBuilder = setInterval(function() { 
+		if (shouldLoadUpgrade) buyUpgrade();
+		if (shouldLoadBuilding) buyBuilding();
+		clickGooldenCookie();
+	}, 1000);
 }
 
 function clearBot() {
@@ -24,6 +28,18 @@ function clearBot() {
 	if (autoBuilder) clearInterval(autoBuilder);
 }
 
+function buyUpgrade() {
+	$('.CMBackBlue').click()
+}
+
 function buyBuilding() {
 	$("span[style*='color: rgb(0, 255, 0)']").click();
+}
+
+function clickGooldenCookie() {
+	if (Game.shimmers.length > 0) {
+		for (int i = 0; i < Game.shimmers.length; i++) {
+			Game.shimmers[i].pop()
+		}
+	}
 }
