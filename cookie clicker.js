@@ -40,7 +40,7 @@ function buyBuilding() {
 
 function clickGooldenCookie() {
 	if (Game.shimmers.length > 0) {
-		for (int i = 0; i < Game.shimmers.length; i++) {
+		for (var i = 0; i < Game.shimmers.length; i++) {
 			Game.shimmers[i].pop()
 		}
 	}
