@@ -19,8 +19,7 @@ function initBot(amount, shouldBuyUpgrade, shouldBuyBuilding) {
 	clearBot();
 	autoClicker = setInterval(function() { Game.ClickCookie(); }, amount);
 	autoBuilder = setInterval(function() {
-		var hasBuyUpgrade = false;
-		if (shouldBuyUpgrade) hasBuyUpgrade = buyUpgrade();
+		if (shouldBuyUpgrade) buyUpgrade();
 		if (shouldBuyBuilding) buyBuilding();
 		clickGooldenCookie();
 	}, 1000);
@@ -32,12 +31,8 @@ function clearBot() {
 }
 
 function buyUpgrade() {
-	var upgrade = $('.CMBackBlue');
-	if (upgrade.length > 0) {
-		upgrade.click();
-		return true;
-	}
-	return false;
+	$('.CMBackGray').click()
+	$('.CMBackBlue').click();
 }
 
 function buyBuilding() {
