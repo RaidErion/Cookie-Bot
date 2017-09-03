@@ -1,11 +1,17 @@
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" 
-  type="text/javascript"></script>
-
 var autoClicker;  
+var autoBuilder;
 
-initBot(10);
-  
 function initBot(amount) {
-	if (autoClicker) clearInterval(autoClicker);
+	clearBot();
 	autoClicker = setInterval(function() { Game.ClickCookie(); }, amount);
+	autoBuilder = setInterval(function() { buyBuilding(); }, 1000);
+}
+
+function clearBot() {
+	if (autoClicker) clearInterval(autoClicker);
+	if (autoBuilder) clearInterval(autoBuilder);
+}
+
+function buyBuilding() {
+	$("span[style*='color: rgb(0, 255, 0)']").click();
 }
