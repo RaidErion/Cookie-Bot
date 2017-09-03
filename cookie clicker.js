@@ -21,7 +21,7 @@ function initBot(amount, shouldBuyUpgrade, shouldBuyBuilding) {
 	autoBuilder = setInterval(function() {
 		var hasBuyUpgrade = false;
 		if (shouldBuyUpgrade) hasBuyUpgrade = buyUpgrade();
-		if (shouldBuyBuilding && !hasBuyUpgrade) buyBuilding();
+		if (shouldBuyBuilding) buyBuilding();
 		clickGooldenCookie();
 	}, 1000);
 }
